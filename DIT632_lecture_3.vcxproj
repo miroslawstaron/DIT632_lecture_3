@@ -141,6 +141,7 @@
   <ItemGroup>
     <ClCompile Include="file_create.c" />
     <ClCompile Include="main.c" />
+    <ClCompile Include="read_binary_file.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

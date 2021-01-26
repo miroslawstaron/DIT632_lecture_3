@@ -8,5 +8,8 @@
 void main(void)
 {
 	// demonstration of creating, reading and writing to a file
-	demo_file_create();
+	// demo_file_create();
+
+	// demonstration of reading binary files
+	demo_file_binary();
 }
