@@ -1,25 +1,30 @@
 /*
 * This is the second part of the network communication - the client.
-* The client will send a message to the server and then receive a response. 
+* The client will send a message to the server, but the message is now
+* a specific structure
 */
+
+// so, we need to include the structure definition
+// it should be the same structure for both the client and the server
+#include "structure_definition.h"
 
 // the code below shows the use of preprocessor directives
 // when compiling the code
 // this particular code says that different libraries/headers should be included
 // if the system is WIN32, i.e. Visual Studio compiler
 #ifdef WIN32
-    #include <winsock2.h>                // link to the winsock library, only for VC cl 
-    #pragma comment(lib,"ws2_32.lib")   // Winsock Library
+#include <winsock2.h>                // link to the winsock library, only for VC cl 
+#pragma comment(lib,"ws2_32.lib")   // Winsock Library
 #else
-    #include <sys/socket.h>
+#include <sys/socket.h>
 #endif
 
 #define PORT 8088 
 
-int main_client(void)
+int main_client_struct(void)
 {
     WSADATA mywsadata; //your wsadata struct, it will be filled by WSAStartup
-    
+
     if (WSAStartup(MAKEWORD(2, 2), &mywsadata) != 0)
     {
         printf("Failed. Error Code : %d", WSAGetLastError());
@@ -28,11 +33,12 @@ int main_client(void)
 
     int iSocket;
     struct sockaddr_in server_addr;
-    char server_message[2000], client_message[2000];
 
-    // Clean buffers:
-    memset(server_message, '\0', sizeof(server_message));
-    memset(client_message, '\0', sizeof(client_message));
+    struct_person sPersonToSend;
+
+    sPersonToSend.iAge = 12;
+    strcpy(sPersonToSend.address, "John's street 12");
+    strcpy(sPersonToSend.name, "MS");
 
     // Create socket:
     iSocket = socket(AF_INET, SOCK_STREAM, 0);
@@ -56,23 +62,11 @@ int main_client(void)
     }
     printf("Connected with server successfully\n");
 
-    // Get input from the user:
-    printf("Enter message: ");
-    gets(client_message);
-
     // Send the message to server:
-    if (send(iSocket, client_message, strlen(client_message), 0) < 0) {
+    if (send(iSocket, &sPersonToSend, sizeof(sPersonToSend), 0) < 0) {
         printf("Unable to send message\n");
         return -1;
     }
-
-    // Receive the server's response:
-    if (recv(iSocket, server_message, sizeof(server_message), 0) < 0) {
-        printf("Error while receiving server's msg\n");
-        return -1;
-    }
-
-    printf("Server's response: %s\n", server_message);
 
     // Close the socket
 #ifdef WIN32  

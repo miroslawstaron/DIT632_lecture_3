@@ -141,7 +141,9 @@
   <ItemGroup>
     <ClCompile Include="file_create.c" />
     <ClCompile Include="file_sockets_client.c" />
+    <ClCompile Include="file_sockets_client_struct.c" />
     <ClCompile Include="file_sockets_server.c" />
+    <ClCompile Include="file_sockets_server_struct.c" />
     <ClCompile Include="google_test.c" />
     <ClCompile Include="main.c" />
     <ClCompile Include="read_binary_file.c" />

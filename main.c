@@ -15,5 +15,7 @@ void main(void)
 
 	// google_test();
 
-	main_client();
+	// main_client();
+
+	main_client_struct();
 }

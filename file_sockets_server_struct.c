@@ -1,20 +1,24 @@
 /*
 * Example of sending information via sockets.
-* In this example I will show you how to send the strings
+* In this example I will show you how to use struct in order to give the structure to our data
 */
 
 #include <stdio.h> 
 #include <stdlib.h> 
+
+// including the definition of the structure 
+// which we will use to interpret the message which we receive
+#include "structure_definition.h"
 
 // the code below shows the use of preprocessor directives
 // when compiling the code
 // this particular code says that different libraries/headers should be included
 // if the system is WIN32, i.e. Visual Studio compiler
 #ifdef WIN32
-    #include <winsock2.h>                // link to the winsock library, only for VC cl 
-    #pragma comment(lib,"ws2_32.lib")   // Winsock Library
+#include <winsock2.h>                // link to the winsock library, only for VC cl 
+#pragma comment(lib,"ws2_32.lib")   // Winsock Library
 #else
-    #include <sys/socket.h>
+#include <sys/socket.h>
 #endif
 
 // we listen to the port 8088
@@ -23,7 +27,7 @@
 /*
 * This procedure sets up the socket at the server side.
 */
-int main_sock(int argc, char const* argv[])
+void main_sock_struct(int argc, char const* argv[])
 {
 
 #ifdef WIN32
@@ -38,7 +42,7 @@ int main_sock(int argc, char const* argv[])
     int iAddrLen = sizeof(addrSocket);
 
     char strReadBuffer[1024] = { 0 };       // Buffer for reading the message from client
-    char* strReply = "REPLY: Hello!\0";     // Our reply to the client
+                                            // This is the same as we will add the structure to it later on
 
     printf("\nInitialising Winsock...\n");
 
@@ -105,13 +109,17 @@ int main_sock(int argc, char const* argv[])
         exit(1);
     }
 
+    // Now, here is where it gets interesting
+    // we received a series of bytes, which we can print: 
     printf("Message received: %s\n", strReadBuffer);
 
-    // send something over the socket
-    if (send(iSocket, strReply, strlen(strReply), 0) < 0)
-    {
-        printf("Error sending the message to the client %s. Not really a problem on our side. \n", strerror(errno));
-    }
+    // but we can also add the structure to it
+    struct_person* sMyPerson;
+
+    sMyPerson = (struct_person*)strReadBuffer;
+
+    // and let's check what the name of the person is:
+    printf("Peron's name: %s", sMyPerson->name);
 
     // Close the socket
 #ifdef WIN32  
