@@ -11,5 +11,9 @@ void main(void)
 	// demo_file_create();
 
 	// demonstration of reading binary files
-	demo_file_binary();
+	// demo_file_binary();
+
+	// google_test();
+
+	main_client();
 }

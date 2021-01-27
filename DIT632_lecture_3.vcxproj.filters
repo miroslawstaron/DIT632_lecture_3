@@ -24,5 +24,19 @@
     <ClCompile Include="read_binary_file.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="file_sockets_server.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="file_sockets_client.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="google_test.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="structure_definition.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
