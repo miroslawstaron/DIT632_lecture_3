@@ -50,8 +50,11 @@ void demo_file_binary()
 			// read the number of elements to the buffer
 			fread(pstrBuffer, 
 				  sizeof(char), 
-				  MAX, 
+				  MAX-1, 
 				  pFileToCreate); 
+
+			// end of string in order to avoid printing random memory content
+			pstrBuffer[MAX-1] = '\0';
 
 			// let's print them and see what happens
 			printf("%s \n", pstrBuffer);

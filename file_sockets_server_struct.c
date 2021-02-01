@@ -119,7 +119,9 @@ void main_sock_struct(int argc, char const* argv[])
     sMyPerson = (struct_person*)strReadBuffer;
 
     // and let's check what the name of the person is:
-    printf("Peron's name: %s", sMyPerson->name);
+    printf("Person's name: %s \n", sMyPerson->name);
+    printf("Person's address: %s \n", sMyPerson->address);
+    printf("Person's age: %d \n", sMyPerson->iAge);
 
     // Close the socket
 #ifdef WIN32  

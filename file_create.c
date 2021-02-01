@@ -14,7 +14,7 @@ void demo_file_create()
 	char* strFilename = "myTestFile.txt";
 
 	// open the file to read
-	pFileToCreate = fopen(strFilename, "r");
+	pFileToCreate = fopen(strFilename, "a");
 
 	// a good practice when working with files is to check
 	// that the file pointer is correct, i.e. the file was opened
@@ -25,14 +25,21 @@ void demo_file_create()
 		// we can do something with it
 		// here I chose to read a string from the file
 
-		char strToRead[MAX];
+		char strToRead[MAX] = "Hello World! #2\n";
 		
 		// read one word, %s means that it will read the text
 		// until it finds a whitespace of EOF
-		fscanf(pFileToCreate, "%s", strToRead);
+		fputs(&strToRead, pFileToCreate);
 		
 		// and print the result on the console
-		printf("%s \n", strToRead);
+		// printf("%s \n", strToRead);
+
+		// read one word, %s means that it will read the text
+		// until it finds a whitespace of EOF
+		// fscanf(pFileToCreate, "%s", strToRead);
+
+		// and print the result on the console
+		// printf("%s \n", strToRead);
 	}
 	else	// if the file was not opened, e.g. does not exists
 	{

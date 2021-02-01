@@ -43,7 +43,7 @@ void google_test(void)
     // i.e we only create the "file" which will help us to get the data from the 
     // internet
     // AF_INET means that we can communicate with all addresses on the internet using IPv4
-    // SOCK_STREAM means that we will use TCP, SOCK_DGRAM means that we use UDC
+    // SOCK_STREAM means that we will use TCP, SOCK_DGRAM means that we use UDP
     if ((iSocket = socket(AF_INET, SOCK_STREAM, 0)) < 0) {
         printf("Error: Could not create socket: %s. Exiting...\n", strerror(errno));
         exit(1);
