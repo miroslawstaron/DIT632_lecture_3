@@ -6,6 +6,42 @@
 
 #define MAX 20			// max number of characters to read
 
+// this function demonstrates how to write a series of integers to a binary file
+void demo_write_binary()
+{
+	// name of my file that I will write to
+	char* binaryFilename = "myBinaryFile.bin";
+	
+	// pointer to the file and
+	// open the file to write
+	FILE* pBinaryFile = fopen(binaryFilename, "wb");
+	
+	// a good practice when working with files is to check
+	// that the file pointer is correct, i.e. the file was opened
+	if (pBinaryFile != NULL)
+	{
+		// generate a series of numbers
+		for (int i = 65; i < 77; i++)
+		{
+			// write the number to the file
+			// in a binary format
+			fwrite(&i,				// pointer to the data
+				   sizeof(int),		// size of one element - in our case the size of one integer
+									// we could even write sizeof(i) and that would be the same
+				   1,				// number of elements to write
+				   pBinaryFile);	// pointer to the file
+		}
+	}
+	// if the file was not opened, just provide an error message
+	else
+	{
+		printf("Error opening file %s.", binaryFilename);
+	}
+	
+	fclose(pBinaryFile);
+}
+
+
 void demo_file_binary()
 {
 	FILE* pFileToCreate;	// file which we will create
@@ -13,10 +49,14 @@ void demo_file_binary()
 	// location to my file
 	// let's use the same file as before to check how the reading looks like
 	char* strFilename = "myTestFile.txt";
+	
+	
 
 	// open the file to read
 	// Note! to read binary file we need to change the modifier - rb instead of just r
 	pFileToCreate = fopen(strFilename, "rb");
+	
+	
 
 	// a good practice when working with files is to check
 	// that the file pointer is correct, i.e. the file was opened

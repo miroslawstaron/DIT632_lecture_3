@@ -13,9 +13,12 @@ void main(void)
 	// demonstration of reading binary files
 	// demo_file_binary();
 
-	// google_test();
+	// demonstration of writing binary files
+	// demo_write_binary();
+
+	google_test();
 
 	// main_client();
 
-	main_client_struct();
+	// main_client_struct();
 }
