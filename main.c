@@ -3,6 +3,7 @@
 */
 #include <stdio.h>
 
+void google_test(void);
 
 // main 
 void main(void)

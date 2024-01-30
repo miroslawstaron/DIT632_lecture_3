@@ -16,6 +16,7 @@
 #else
     #include <sys/socket.h>
     #include <arpa/inet.h>
+    #include <unistd.h>
 #endif
 
 #define MSG_SIZE 1024
@@ -96,7 +97,7 @@ void google_test(void)
     closesocket(iSocket);
     WSACleanup();
 #else
-    close(s);
+    close(iSocket);
 #endif
 
     exit(0);
