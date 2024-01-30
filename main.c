@@ -14,11 +14,15 @@ void main(void)
 	// demo_file_binary();
 
 	// demonstration of writing binary files
-	// demo_write_binary();
+	demo_write_binary();
 
-	google_test();
+	// google_test();
 
 	// main_client();
+	
+	// main_sock();
 
 	// main_client_struct();
+	
+	// main_sock_struct();
 }

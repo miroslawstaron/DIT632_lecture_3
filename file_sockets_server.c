@@ -23,7 +23,7 @@
 /*
 * This procedure sets up the socket at the server side.
 */
-int main_sock(int argc, char const* argv[])
+int main_sock()
 {
 
 #ifdef WIN32

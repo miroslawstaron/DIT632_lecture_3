@@ -11,10 +11,10 @@ void demo_file_create()
 	FILE* pFileToCreate;	// file which we will create
 
 	// location to my file
-	char* strFilename = "myTestFile.txt";
+	char* strFilename = "myTestFile2.txt";
 
 	// open the file to read
-	pFileToCreate = fopen(strFilename, "a");
+	pFileToCreate = fopen(strFilename, "w");
 
 	// a good practice when working with files is to check
 	// that the file pointer is correct, i.e. the file was opened
@@ -25,14 +25,14 @@ void demo_file_create()
 		// we can do something with it
 		// here I chose to read a string from the file
 
-		char strToRead[MAX] = "Hello World! #2\n";
+		char strToRead[MAX] = "Hello World! #2024\n";
 		
 		// read one word, %s means that it will read the text
 		// until it finds a whitespace of EOF
-		fputs(&strToRead, pFileToCreate);
+		fputs(strToRead, pFileToCreate);
 		
 		// and print the result on the console
-		// printf("%s \n", strToRead);
+		fprintf(pFileToCreate, "%s ______\n", strToRead);
 
 		// read one word, %s means that it will read the text
 		// until it finds a whitespace of EOF

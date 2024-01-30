@@ -27,7 +27,7 @@
 /*
 * This procedure sets up the socket at the server side.
 */
-void main_sock_struct(int argc, char const* argv[])
+void main_sock_struct()
 {
 
 #ifdef WIN32
@@ -114,13 +114,13 @@ void main_sock_struct(int argc, char const* argv[])
     printf("Message received: %s\n", strReadBuffer);
 
     // but we can also add the structure to it
-    struct_person* sMyPerson;
+    struct_person_small* sMyPerson;
 
-    sMyPerson = (struct_person*)strReadBuffer;
+    sMyPerson = (struct_person_small*)strReadBuffer;
 
     // and let's check what the name of the person is:
     printf("Person's name: %s \n", sMyPerson->name);
-    printf("Person's address: %s \n", sMyPerson->address);
+    //printf("Person's address: %s \n", sMyPerson->address);
     printf("Person's age: %d \n", sMyPerson->iAge);
 
     // Close the socket

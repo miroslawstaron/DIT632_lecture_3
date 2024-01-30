@@ -6,6 +6,11 @@
 
 #define MAX 20			// max number of characters to read
 
+struct sPerson {
+	char name[20];
+	int age;
+};
+
 // this function demonstrates how to write a series of integers to a binary file
 void demo_write_binary()
 {
@@ -21,16 +26,22 @@ void demo_write_binary()
 	if (pBinaryFile != NULL)
 	{
 		// generate a series of numbers
-		for (int i = 65; i < 77; i++)
+		for (int i = 0x48; i < 0x97; i++)
 		{
 			// write the number to the file
 			// in a binary format
 			fwrite(&i,				// pointer to the data
-				   sizeof(int),		// size of one element - in our case the size of one integer
+				   sizeof(i),		// size of one element - in our case the size of one integer
 									// we could even write sizeof(i) and that would be the same
 				   1,				// number of elements to write
 				   pBinaryFile);	// pointer to the file
 		}
+		
+		struct sPerson person;
+		
+		strcpy(person.name, "John");
+		person.age = 25;
+		fwrite(&person, sizeof(person), 1, pBinaryFile);
 	}
 	// if the file was not opened, just provide an error message
 	else
@@ -75,7 +86,7 @@ void demo_file_binary()
 			  pFileToCreate);			// where we should read them from (file)
 
 		// and print the result on the console
-		printf("%c \n", cValToRead);
+		printf("%c: 0x%x \n", cValToRead, cValToRead);
 
 		// now, version with the buffer
 		char* pstrBuffer; 
